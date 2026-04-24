@@ -5,8 +5,8 @@ import time
 
 from utils import get_unique_smt_groups, read_workloads_from_bin
 
-DEFAULT_ITERATIONS = 1
-DEFAULT_DURATION = 10
+DEFAULT_ITERATIONS = 2
+DEFAULT_DURATION = 15
 RES_SOLO_FOLDER = "solo"
 RES_COMB_FOLDER = "comb"
 

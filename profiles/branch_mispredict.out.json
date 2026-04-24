@@ -1,0 +1,79 @@
+{
+    "workload_name": "branch_mispredict.out",
+    "counters": {
+        "instructions": 53676367466,
+        "cycles": 69002853921,
+        "branches": 6709495478,
+        "branch-misses": 3241608150,
+        "cache-references": 670999,
+        "cache-misses": 151486,
+        "context-switches": 0,
+        "cpu-migrations": 0,
+        "page-faults": 139,
+        "FP_ADD_SUB": 0,
+        "FP_MUL": 0,
+        "FP_DIV": 0,
+        "FP_MAC": 0,
+        "LOAD_DISPATCH": 4251991,
+        "STORE_DISPATCH": 828924,
+        "r329": 5054703,
+        "IC_HIT": 0,
+        "IC_MISS": 0,
+        "IC_ACCESS": 0,
+        "INT_REGISTER_STALL": 0,
+        "FP_REGISTER_STALL": 75,
+        "LOAD_QUEUE_STALL": 0,
+        "INT_SCHED0_STALL": 1463,
+        "INT_SCHED1_STALL": 1657,
+        "INT_SCHED2_STALL": 0,
+        "INT_SCHED3_STALL": 513,
+        "FP_SCHEDULER_STALL": 0,
+        "INT_DISP_IBS_MODE": 110643120520,
+        "FP_DISP_IBS_MODE": 0,
+        "RETIRE_TOKEN_STALL": 68493
+    },
+    "DERIVED": {
+        "IPC": 0.7778861947862766,
+        "FP_total": 0,
+        "FP_percent": 0.0,
+        "INT_rest": 103928544127,
+        "INT_rest_percent": 93.93132048206624,
+        "Branches": 6709495478,
+        "Branches_percent": 12.499906000997493,
+        "Load": 4251991,
+        "Load_percent": 0.007921532698153095,
+        "Store": 828924,
+        "Store_percent": 0.001544299734003166
+    },
+    "PLOT_BUCKETS": {
+        "FP": {
+            "FP_ADD_SUB": 0,
+            "FP_MUL": 0,
+            "FP_DIV": 0,
+            "FP_MAC": 0,
+            "FP_DISP_IBS_MODE": 0
+        },
+        "INT": {
+            "INT_REGISTER_STALL": 0,
+            "INT_SCHED0_STALL": 1463,
+            "INT_SCHED1_STALL": 1657,
+            "INT_SCHED2_STALL": 0,
+            "INT_SCHED3_STALL": 513,
+            "LOAD_QUEUE_STALL": 0,
+            "RETIRE_TOKEN_STALL": 68493,
+            "INT_DISP_IBS_MODE": 110643120520
+        },
+        "MEM": {
+            "Load": 4251991,
+            "Store": 828924,
+            "LOAD_STORE_DISPATCH": 0,
+            "cache-references": 670999,
+            "cache-misses": 151486
+        },
+        "ICACHE": {
+            "IC_HIT": 0,
+            "IC_MISS": 0,
+            "IC_ACCESS": 0
+        }
+    }
+}
