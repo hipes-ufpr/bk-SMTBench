@@ -10,39 +10,27 @@ void workload() {
     asm volatile("mov $0x1, %%rbx" : : : "rbx");
 
     do {
-        asm volatile("mov $12345, %%rax" ::: "rax");
-        asm volatile("mov $0, %%rdx" ::: "rdx");
-        asm volatile("idiv %%rbx" ::: "rax", "rdx");
+        asm volatile(
+            ".align 64\n\t"
+            
+            // Cria uma variável inicial
+            ".set valor_rax, 12345\n\t"
 
-        asm volatile("mov $12346, %%rax" ::: "rax");
-        asm volatile("mov $0, %%rdx" ::: "rdx");
-        asm volatile("idiv %%rbx" ::: "rax", "rdx");
-
-        asm volatile("mov $12347, %%rax" ::: "rax");
-        asm volatile("mov $0, %%rdx" ::: "rdx");
-        asm volatile("idiv %%rbx" ::: "rax", "rdx");
-
-        asm volatile("mov $12348, %%rax" ::: "rax");
-        asm volatile("mov $0, %%rdx" ::: "rdx");
-        asm volatile("idiv %%rbx" ::: "rax", "rdx");
-
-        asm volatile("mov $12349, %%rax" ::: "rax");
-        asm volatile("mov $0, %%rdx" ::: "rdx");
-        asm volatile("idiv %%rbx" ::: "rax", "rdx");
-
-        asm volatile("mov $12350, %%rax" ::: "rax");
-        asm volatile("mov $0, %%rdx" ::: "rdx");
-        asm volatile("idiv %%rbx" ::: "rax", "rdx");
-
-        asm volatile("mov $12351, %%rax" ::: "rax");
-        asm volatile("mov $0, %%rdx" ::: "rdx");
-        asm volatile("idiv %%rbx" ::: "rax", "rdx");
-
-        asm volatile("mov $12352, %%rax" ::: "rax");
-        asm volatile("mov $0, %%rdx" ::: "rdx");
-        asm volatile("idiv %%rbx" ::: "rax", "rdx");
+            // Repete o bloco
+            ".rept 32\n\t"
+                "mov $valor_rax, %%rax\n\t"
+                "mov $0, %%rdx\n\t"
+                "idiv %%rbx\n\t"
+                
+                // Incrementa a variável para a próxima repetição
+                ".set valor_rax, valor_rax + 1\n\t"
+            ".endr\n\t"
+            :
+            :
+            : "rax", "rdx", "rbx"
+        );
     } while (alive);
-    asm volatile("mov %%rbx, %0" : "=r"(count) : : "rbx");
+    asm volatile("mov %%rbx, %0" : "=r"(count) : : ); 
 
     volatile int64_t avoidOtimization = count;
     (void)avoidOtimization;

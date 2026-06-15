@@ -12,41 +12,22 @@ void workload() {
     asm volatile("mov $0x1, %%rbx" : : : "rbx");
 
     do {
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
+      asm volatile(
+        ".align 64\n\t"
 
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
-      asm volatile("idiv %%rbx" : : : "rax", "rdx", "rbx");
+        ".rept 64\n\t"
+        "idiv %%rbx\n\t"
+        "idiv %%rbx\n\t"
+        "idiv %%rbx\n\t"
+        "idiv %%rbx\n\t"
+        "idiv %%rbx\n\t"
+        "idiv %%rbx\n\t"
+        "idiv %%rbx\n\t"
+        ".endr\n\t"
+        :
+        :
+        : "rax", "rdx", "rbx"
+      );
     } while (alive);
     asm volatile("mov %%rbx, %0" : "=r"(count) : : "rbx");
 

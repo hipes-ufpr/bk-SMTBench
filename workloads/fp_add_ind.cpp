@@ -30,41 +30,22 @@ void workload() {
     asm volatile("pop %%rbx" : : : "rbx");
 
     do {
-        asm volatile("addsd %%xmm0, %%xmm0" : : : "xmm0");
-        asm volatile("addsd %%xmm1, %%xmm1" : : : "xmm1");
-        asm volatile("addsd %%xmm2, %%xmm2" : : : "xmm2");
-        asm volatile("addsd %%xmm3, %%xmm3" : : : "xmm3");
-        asm volatile("addsd %%xmm4, %%xmm4" : : : "xmm4");
-        asm volatile("addsd %%xmm5, %%xmm5" : : : "xmm5");
-        asm volatile("addsd %%xmm6, %%xmm6" : : : "xmm6");
-        asm volatile("addsd %%xmm7, %%xmm7" : : : "xmm7");
-
-        asm volatile("addsd %%xmm0, %%xmm0" : : : "xmm0");
-        asm volatile("addsd %%xmm1, %%xmm1" : : : "xmm1");
-        asm volatile("addsd %%xmm2, %%xmm2" : : : "xmm2");
-        asm volatile("addsd %%xmm3, %%xmm3" : : : "xmm3");
-        asm volatile("addsd %%xmm4, %%xmm4" : : : "xmm4");
-        asm volatile("addsd %%xmm5, %%xmm5" : : : "xmm5");
-        asm volatile("addsd %%xmm6, %%xmm6" : : : "xmm6");
-        asm volatile("addsd %%xmm7, %%xmm7" : : : "xmm7");
-
-        asm volatile("addsd %%xmm0, %%xmm0" : : : "xmm0");
-        asm volatile("addsd %%xmm1, %%xmm1" : : : "xmm1");
-        asm volatile("addsd %%xmm2, %%xmm2" : : : "xmm2");
-        asm volatile("addsd %%xmm3, %%xmm3" : : : "xmm3");
-        asm volatile("addsd %%xmm4, %%xmm4" : : : "xmm4");
-        asm volatile("addsd %%xmm5, %%xmm5" : : : "xmm5");
-        asm volatile("addsd %%xmm6, %%xmm6" : : : "xmm6");
-        asm volatile("addsd %%xmm7, %%xmm7" : : : "xmm7");
-
-        asm volatile("addsd %%xmm0, %%xmm0" : : : "xmm0");
-        asm volatile("addsd %%xmm1, %%xmm1" : : : "xmm1");
-        asm volatile("addsd %%xmm2, %%xmm2" : : : "xmm2");
-        asm volatile("addsd %%xmm3, %%xmm3" : : : "xmm3");
-        asm volatile("addsd %%xmm4, %%xmm4" : : : "xmm4");
-        asm volatile("addsd %%xmm5, %%xmm5" : : : "xmm5");
-        asm volatile("addsd %%xmm6, %%xmm6" : : : "xmm6");
-        asm volatile("addsd %%xmm7, %%xmm7" : : : "xmm7");
+        asm volatile(
+            ".align 64\n\t"
+            ".rept 64\n\t"
+                "addsd %%xmm0, %%xmm0\n\t"
+                "addsd %%xmm1, %%xmm1\n\t"
+                "addsd %%xmm2, %%xmm2\n\t"
+                "addsd %%xmm3, %%xmm3\n\t"
+                "addsd %%xmm4, %%xmm4\n\t"
+                "addsd %%xmm5, %%xmm5\n\t"
+                "addsd %%xmm6, %%xmm6\n\t"
+                "addsd %%xmm7, %%xmm7\n\t"
+            ".endr\n\t"
+            :
+            :
+            : "xmm0", "xmm1", "xmm2", "xmm3", "xmm4", "xmm5", "xmm6", "xmm7"
+        );
     } while (alive);
 
     asm volatile("push $0x0" :::);

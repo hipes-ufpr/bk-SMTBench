@@ -1,0 +1,82 @@
+{
+    "workload_name": "int_div_ind.out",
+    "counters": {
+        "instructions": 44329599762,
+        "cycles": 91931969321,
+        "branches": 1643759138,
+        "branch-misses": 119979,
+        "cache-references": 716855,
+        "cache-misses": 149129,
+        "context-switches": 0,
+        "cpu-migrations": 0,
+        "page-faults": 139,
+        "FP_ADD_SUB": 0,
+        "FP_MUL": 0,
+        "FP_DIV": 0,
+        "FP_MAC": 0,
+        "FPU_PIPE_ASSIG_0": 400821,
+        "FPU_PIPE_ASSIG_1": 188977,
+        "FPU_PIPE_ASSIG_2": 438462,
+        "FPU_PIPE_ASSIG_3": 225946,
+        "LOAD_DISPATCH": 1642813710,
+        "STORE_DISPATCH": 1297685,
+        "LOAD_STORE_DISPATCH": 142720,
+        "INT_PHY_REG_FILE_RSRC_STALL": 10212021,
+        "FP_REG_FILE_RSRC_STALL": 0,
+        "LOAD_QUEUE_STALL": 1676,
+        "STORE_QUEUE_STALL": 0,
+        "TAKEN_BRANCH_QUEUE_STALL": 0,
+        "INT_SCHEDULER_0_TOKEN_STALL": 78288842029,
+        "INT_SCHEDULER_1_TOKEN_STALL": 396559,
+        "INT_SCHEDULER_2_TOKEN_STALL": 6179547,
+        "INT_SCHEDULER_3_TOKEN_STALL": 576339,
+        "FP_SCHEDULER_RSRC_STALL": 0,
+        "INT_DISP_IBS_MODE": 55842871306,
+        "FP_DISP_IBS_MODE": 0,
+        "RETIRE_TOKEN_STALL": 14977
+    },
+    "DERIVED": {
+        "IPC": 0.48220004520096577,
+        "FP_total": 0,
+        "FP_percent": 0.0,
+        "INT_rest": 52555000773,
+        "INT_rest_percent": 94.11228245234099,
+        "Branches": 1643759138,
+        "Branches_percent": 3.7080396548246193,
+        "Load": 1642813710,
+        "Load_percent": 3.7059069308544594,
+        "Store": 1297685,
+        "Store_percent": 0.002927355552423451
+    },
+    "PLOT_BUCKETS": {
+        "FP": {
+            "FP_ADD_SUB": 0,
+            "FP_MUL": 0,
+            "FP_DIV": 0,
+            "FP_MAC": 0,
+            "FP_DISP_IBS_MODE": 0
+        },
+        "INT": {
+            "INT_REGISTER_STALL": 0,
+            "INT_SCHED0_STALL": 0,
+            "INT_SCHED1_STALL": 0,
+            "INT_SCHED2_STALL": 0,
+            "INT_SCHED3_STALL": 0,
+            "LOAD_QUEUE_STALL": 1676,
+            "RETIRE_TOKEN_STALL": 14977,
+            "INT_DISP_IBS_MODE": 55842871306
+        },
+        "MEM": {
+            "Load": 1642813710,
+            "Store": 1297685,
+            "LOAD_STORE_DISPATCH": 142720,
+            "cache-references": 716855,
+            "cache-misses": 149129
+        },
+        "ICACHE": {
+            "IC_HIT": 0,
+            "IC_MISS": 0,
+            "IC_ACCESS": 0
+        }
+    }
+}

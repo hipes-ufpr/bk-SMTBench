@@ -10,13 +10,10 @@ const char* name = "memory_load_ind";
 
 #define KB_SIZE 67108864
 
+size_t length;
+uint64_t *vec;
+
 void workload() {
-    size_t length = KB_SIZE / sizeof(uint64_t);
-    uint64_t *vec = (uint64_t *) aligned_alloc(64, length * sizeof(uint64_t));
-
-    for (size_t i = 0; i < length; i++)
-        vec[i] = i;
-
     uint64_t j = 0;
 
     uint64_t c0 = 0, c1 = 0, c2 = 0, c3 = 0;
@@ -60,6 +57,7 @@ void workload() {
             c6 += vec[j + 30];
             c7 += vec[j + 31];
         }
+
     } while (alive);
 
     volatile int64_t avoidOtimization = c0 + c1 + c2 + c3 + c4 + c5 + c6 + c7;
@@ -67,6 +65,11 @@ void workload() {
 }
 
 int main(int argc, char* argv[]) {
+    length = KB_SIZE / sizeof(uint64_t);
+    vec = (uint64_t *) aligned_alloc(64, length * sizeof(uint64_t));
+
+    for (size_t i = 0; i < length; i++)
+        vec[i] = i;
     init(argc, argv);
     workload();
     fini(name);

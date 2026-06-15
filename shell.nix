@@ -5,6 +5,7 @@ pkgs.mkShell {
       matplotlib
       mplcursors
       pandas
+      scipy
     ]))
   ];
 }

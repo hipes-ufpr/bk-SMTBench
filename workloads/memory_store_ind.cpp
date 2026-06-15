@@ -10,13 +10,10 @@ const char* name = "memory_store_ind";
 
 #define KB_SIZE 67108864
 
+size_t length;
+uint64_t *arr;
+
 void workload() {
-    size_t length = KB_SIZE / sizeof(uint64_t);
-    uint64_t *arr = (uint64_t*) aligned_alloc(64, length * sizeof(uint64_t));
-
-    for (size_t i = 0; i < length; i++)
-        arr[i] = i;
-
     uint64_t j = 0;
     do{
         for (j = 0; j <= length - 32; j += 32) {
@@ -63,6 +60,13 @@ void workload() {
 }
 
 int main(int argc, char* argv[]) {
+
+    length = KB_SIZE / sizeof(uint64_t);
+    arr = (uint64_t*) aligned_alloc(64, length * sizeof(uint64_t));
+
+    for (size_t i = 0; i < length; i++)
+        arr[i] = i;
+
     init(argc, argv);
     workload();
     fini(name);

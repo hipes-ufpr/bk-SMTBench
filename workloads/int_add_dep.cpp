@@ -7,6 +7,8 @@
 const char* name = "int_add_dep";
 
 void workload() {
+    int64_t count = 0;
+
     asm volatile(
         "xor %%r12, %%r12\n\t"
         :
@@ -19,25 +21,11 @@ void workload() {
             ".align 64\n\t"
 
             // Cadeia longa e totalmente dependente
-            ".rept 50\n\t"
+            ".rept 64\n\t"
             "add %%r12, %%r12\n\t"
             "add %%r12, %%r12\n\t"
             "add %%r12, %%r12\n\t"
             "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-            "add %%r12, %%r12\n\t"
-
             "add %%r12, %%r12\n\t"
             "add %%r12, %%r12\n\t"
             "add %%r12, %%r12\n\t"
@@ -45,9 +33,19 @@ void workload() {
             ".endr\n\t"
             :
             :
-            : "r12", "memory"
+            : "r12"
         );
     } while (alive);
+
+    asm volatile(
+        "mov %%r12, %0\n\t"
+        : "=r"(count)
+        :
+        : "r12"
+    );
+
+    volatile int64_t avoidOtimization = count;
+    (void)avoidOtimization;
 }
 
 int main(int argc, char* argv[]) {

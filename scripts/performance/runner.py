@@ -117,12 +117,16 @@ def execute():
     start_time = time.time()
     current_run = 0
 
-    for bin in binaries:
-        bin_path = os.path.join(bin_folder, bin)
-        for it in range(num_iterations):
+    for it in range(num_iterations):
+        for bin in binaries:
+            bin_path = os.path.join(bin_folder, bin)
+
             current_run += 1
             elapsed = time.time() - start_time
-            remaining = estimated_total_seconds - int(elapsed)
+            remaining = max(
+                0,
+                estimated_total_seconds - int(elapsed)
+            )
 
             name = os.path.basename(bin).replace(".out", "")
             result_file = f"{name}_Execution-{it}.res"
@@ -146,13 +150,17 @@ def execute():
 
                 pA.wait()
 
-    for binA, binB in binary_pairs:
-        binA_path = os.path.join(bin_folder, binA)
-        binB_path = os.path.join(bin_folder, binB)
-        for it in range(num_iterations):
+    for it in range(num_iterations):
+        for binA, binB in binary_pairs:
+            binA_path = os.path.join(bin_folder, binA)
+            binB_path = os.path.join(bin_folder, binB)
+
             current_run += 1
             elapsed = time.time() - start_time
-            remaining = estimated_total_seconds - int(elapsed)
+            remaining = max(
+                0,
+                estimated_total_seconds - int(elapsed)
+            )
 
             nameA = os.path.basename(binA).replace(".out", "")
             nameB = os.path.basename(binB).replace(".out", "")

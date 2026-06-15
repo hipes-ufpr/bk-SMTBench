@@ -15,16 +15,10 @@ typedef struct list_s {
     uint64_t v;
 } list_t;
 
-void workload() {
-    size_t length = KB_SIZE / sizeof(list_t);
-    list_t *base = (list_t*) aligned_alloc(64, length * sizeof(list_t));
+size_t length;
+list_t *base;
 
-    for (size_t i = 0; i < length - 1; i++) {
-        base[i].next = &base[i + 1];
-        base[i].v = i;
-    }
-    base[length - 1].next = &base[0];
-    base[length - 1].v = length - 1;
+void workload() {
 
     uint64_t j = 0;
     uint64_t value = 0;
@@ -78,6 +72,17 @@ void workload() {
 }
 
 int main(int argc, char* argv[]) {
+
+    length = KB_SIZE / sizeof(list_t);
+    base = (list_t*) aligned_alloc(64, length * sizeof(list_t));
+
+    for (size_t i = 0; i < length - 1; i++) {
+        base[i].next = &base[i + 1];
+        base[i].v = i;
+    }
+    base[length - 1].next = &base[0];
+    base[length - 1].v = length - 1;
+
     init(argc, argv);
     workload();
     fini(name);
